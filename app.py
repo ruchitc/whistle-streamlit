@@ -118,6 +118,14 @@ recommender = Recommender()
 
 playlist_link = st.text_input('Enter a playlist link')
 
+hide_table_row_index = """
+            <style>
+            thead tr th:first-child {display:none}
+            tbody th {display:none}
+            </style>
+            """
+
 if(st.button('Generate Recommendations')):
     rec_playlist = recommender.computeRecommendation(playlist_link)
+    st.markdown(hide_table_row_index, unsafe_allow_html=True)
     st.table(rec_playlist)
